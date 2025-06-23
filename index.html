@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pravalika Kethadi | Interactive Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>👩‍💻 Pravalika Kethadi</h1>
+    <p>Salesforce Developer | Automation Enthusiast | Experience Cloud Builder</p>
+
+    <div class="hero-image" onclick="showInsight()">
+      <img src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" alt="Varonis Agentforce" />
+      <div id="imageInsight" class="popup">
+        🔍 This Varonis Agentforce platform inspired my passion for building secure, scalable, and automated Salesforce solutions.
+      </div>
+    </div>
+  </header>
+
+  <section class="experience">
+    <h2>📌 Experience</h2>
+    <div class="card">
+      <h3>Salesforce Admin/Developer @ Jade Global</h3>
+      <p><strong>May 2020 – June 2023</strong></p>
+      <ul>
+        <li>Managed users, roles, profiles, MFA/SSO</li>
+        <li>Reduced license cost by 30%</li>
+        <li>Built automation using Flows, PB, Workflow</li>
+        <li>Developed LWC and Visualforce-based tools</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="projects">
+    <h2>💡 Projects</h2>
+
+    <div class="card" onclick="toggleDetails(this)">
+      <h3>Interactive Resume Portfolio</h3>
+      <p>Built with HTML, CSS, JS – includes Astro bot and TTS</p>
+      <div class="details">
+        <p>Technologies: HTML, JavaScript, Visualforce (concept)</p>
+        <img src="assets/astro.png" alt="Astro Bot" />
+      </div>
+    </div>
+
+    <div class="card" onclick="toggleDetails(this)">
+      <h3>Salesforce Job Tracker</h3>
+      <p>Track job applications, recruiters, interviews</p>
+      <div class="details">
+        <p>Includes automated reminders and dashboards.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>📬 Contact</h2>
+    <p>📧 pravalika.email@example.com</p>
+    <p>💼 <a href="https://www.linkedin.com/in/pravalikakethadi" target="_blank">LinkedIn</a></p>
+    <p>💻 <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
+  </section>
+
+  <img src="assets/astro.png" class="astro" onclick="speakIntro()" alt="Astro Bot" />
+
+  <script src="script.js"></script>
+</body>
+</html>

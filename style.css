@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f6f9;
+  color: #333;
+}
+
+header {
+  background: #0b5cab;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+section {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.card .details {
+  display: none;
+  margin-top: 10px;
+}
+
+.card img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.astro {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 70px;
+  cursor: pointer;
+}
+
+/* Varonis hero image styling */
+.hero-image {
+  position: relative;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.02);
+}
+
+.popup {
+  display: none;
+  background: #fffbe6;
+  color: #333;
+  padding: 12px 16px;
+  border: 1px solid #f7e16a;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 400px;
+  font-size: 14px;
+  z-index: 2;
+}
