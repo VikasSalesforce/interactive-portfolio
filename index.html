@@ -3,198 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pravalika Kethadi | Portfolio</title>
+  <title>Pravalika Kethadi | Salesforce Portfolio</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     body {
+      margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f6f9;
-      color: #222;
+      transition: background 0.3s, color 0.3s;
     }
-
-    /* LANDING SECTION */
-    .landing {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      text-align: center;
+    .dark-mode {
+      background: #121212;
+      color: #eee;
     }
-    .astro-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 1;
-      transform: scale(1.05);
-    }
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
-      z-index: 2;
-    }
-    .content-box {
-      z-index: 3;
-      color: white;
-      max-width: 800px;
-      padding: 20px;
-      animation: fadeIn 1.5s ease-out;
-    }
-    .content-box h1 {
-      font-size: 2.8rem;
-      margin-bottom: 0.5em;
-    }
-    .content-box p {
-      font-size: 1.2rem;
-    }
-    .content-box button {
-      margin-top: 20px;
-      padding: 14px 28px;
-      font-size: 1rem;
-      background: white;
-      color: #0b5cab;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .content-box button:hover {
-      background: #f0f0f0;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* LOADING SCREEN */
-    .loading-screen {
+    .landing, .loading, .main-content {
       display: none;
-      height: 100vh;
-      background-color: #0b5cab;
-      color: white;
       text-align: center;
-      padding-top: 20%;
+      padding: 40px 20px;
     }
-    .loader {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid white;
+    .landing {
+      display: block;
+      background: #000;
+      color: white;
+      height: 100vh;
+    }
+    .landing img {
+      width: 300px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      border: none;
+    }
+    .dark-toggle {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .chatbot-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 24px;
+      background: #007bff;
+      color: white;
       border-radius: 50%;
       width: 50px;
       height: 50px;
-      margin: auto;
-      animation: spin 1s linear infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* MAIN PORTFOLIO */
-    main {
-      display: none;
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-      animation: fadeIn 1s ease;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    .card {
+    .chat-window {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
       background: white;
-      padding: 20px;
-      margin-top: 10px;
+      color: black;
+      border: 1px solid #ccc;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      padding: 10px;
+      width: 250px;
+      display: none;
     }
-
-    a {
-      color: #0b5cab;
-      text-decoration: none;
+    .dark-mode .chat-window {
+      background: #333;
+      color: white;
     }
   </style>
 </head>
 <body>
 
-  <!-- 🔵 Astro Bot Landing Section -->
-  <section class="landing" id="landing">
-    <img src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" class="astro-bg" alt="Astro Bot">
-    <div class="overlay"></div>
-    <div class="content-box">
-      <h1>👩‍💻 Pravalika Kethadi</h1>
-      <p>Salesforce Developer | Automation Enthusiast | Experience Cloud Builder</p>
-      <button onclick="startTransition()">🚀 Explore More</button>
-    </div>
-  </section>
+<div class="landing" id="landing">
+  <h1>👩‍💻 Pravalika Kethadi</h1>
+  <p>Salesforce Developer | Automation Enthusiast | Experience Cloud Builder</p>
+  <img src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" alt="Astro Bot"/>
+  <br>
+  <button class="btn" onclick="startExperience()">🚀 Explore More</button>
+</div>
 
-  <!-- ⏳ Loading Animation -->
-  <div class="loading-screen" id="loading">
-    <div class="loader"></div>
-    <p>Launching portfolio...</p>
-  </div>
+<div class="loading" id="loading">
+  <h2>Launching portfolio...</h2>
+</div>
 
-  <!-- 💼 Portfolio Main Content -->
-  <main id="portfolio">
-    <section class="experience">
-      <h2>📌 Experience</h2>
-      <div class="card">
-        <h3>Salesforce Admin/Developer @ Jade Global</h3>
-        <p><strong>May 2020 – June 2023</strong></p>
-        <ul>
-          <li>Managed users, roles, profiles, MFA/SSO</li>
-          <li>Reduced license cost by 30%</li>
-          <li>Built automation using Flows, PB, Workflow</li>
-          <li>Developed LWC and Visualforce-based tools</li>
-        </ul>
-      </div>
-    </section>
+<div class="main-content" id="mainContent">
+  <h2>🧑‍💼 About Me</h2>
+  <p>I’m Pravalika Kethadi, a Salesforce Admin/Developer with 3+ years of experience in automation, Lightning, and Experience Cloud...</p>
+  <h3>🛠 Skills</h3>
+  <ul>
+    <li>Apex, LWC, Flows, SOQL, Visualforce</li>
+    <li>Sales Cloud, Service Cloud, Marketing Cloud</li>
+    <li>REST Integrations, Data Loader, Security Model</li>
+  </ul>
+</div>
 
-    <section class="projects">
-      <h2>💡 Projects</h2>
-      <div class="card">
-        <h3>Interactive Resume Portfolio</h3>
-        <p>Built with HTML, CSS, JS – includes Astro intro and loader</p>
-      </div>
-    </section>
+<button class="dark-toggle" onclick="toggleDark()">🌓</button>
 
-    <section class="contact">
-      <h2>📬 Contact</h2>
-      <p>📧 pravalika.email@example.com</p>
-      <p>💼 <a href="https://www.linkedin.com/in/pravalikakethadi" target="_blank">LinkedIn</a></p>
-      <p>💻 <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
-    </section>
-  </main>
+<div class="chatbot-icon" onclick="toggleChat()">🤖</div>
+<div class="chat-window" id="chatWindow">
+  <p><strong>Astro Bot:</strong> Ask me anything!</p>
+  <p>Try: “What projects have you worked on?”</p>
+</div>
 
-  <script>
-    function startTransition() {
-      const landing = document.getElementById('landing');
-      const loading = document.getElementById('loading');
-      const portfolio = document.getElementById('portfolio');
+<script>
+  function startExperience() {
+    document.getElementById("landing").style.display = "none";
+    document.getElementById("loading").style.display = "block";
+    const msg = new SpeechSynthesisUtterance("Hi, I'm Astro. Welcome to Pravalika's portfolio. Enjoy the experience!");
+    speechSynthesis.speak(msg);
+    setTimeout(() => {
+      document.getElementById("loading").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }, 3000);
+  }
 
-      landing.style.display = 'none';
-      loading.style.display = 'block';
+  function toggleDark() {
+    document.body.classList.toggle("dark-mode");
+  }
 
-      setTimeout(() => {
-        loading.style.display = 'none';
-        portfolio.style.display = 'block';
-      }, 3000);
-    }
-  </script>
+  function toggleChat() {
+    const chat = document.getElementById("chatWindow");
+    chat.style.display = (chat.style.display === "block") ? "none" : "block";
+  }
+</script>
+
 </body>
 </html>
