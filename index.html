@@ -2,14 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pravalika Kethadi | Interactive Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pravalika Kethadi | Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #222;
+    }
+
+    /* LANDING SECTION */
+    .landing {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      text-align: center;
+    }
+    .astro-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      transform: scale(1.05);
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+      z-index: 2;
+    }
+    .content-box {
+      z-index: 3;
+      color: white;
+      max-width: 800px;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-out;
+    }
+    .content-box h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.5em;
+    }
+    .content-box p {
+      font-size: 1.2rem;
+    }
+    .content-box button {
+      margin-top: 20px;
+      padding: 14px 28px;
+      font-size: 1rem;
+      background: white;
+      color: #0b5cab;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .content-box button:hover {
+      background: #f0f0f0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LOADING SCREEN */
+    .loading-screen {
+      display: none;
+      height: 100vh;
+      background-color: #0b5cab;
+      color: white;
+      text-align: center;
+      padding-top: 20%;
+    }
+    .loader {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: auto;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* MAIN PORTFOLIO */
+    main {
+      display: none;
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      animation: fadeIn 1s ease;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    a {
+      color: #0b5cab;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Landing Page -->
+  <!-- 🔵 Astro Bot Landing Section -->
   <section class="landing" id="landing">
-    <img src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" class="astro-bg" alt="Astro Bot" />
+    <img src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" class="astro-bg" alt="Astro Bot">
     <div class="overlay"></div>
     <div class="content-box">
       <h1>👩‍💻 Pravalika Kethadi</h1>
@@ -18,14 +143,14 @@
     </div>
   </section>
 
-  <!-- Loading Screen -->
-  <div id="loading" class="loading-screen">
+  <!-- ⏳ Loading Animation -->
+  <div class="loading-screen" id="loading">
     <div class="loader"></div>
     <p>Launching portfolio...</p>
   </div>
 
-  <!-- Main Portfolio Section -->
-  <main id="portfolio" style="display: none;">
+  <!-- 💼 Portfolio Main Content -->
+  <main id="portfolio">
     <section class="experience">
       <h2>📌 Experience</h2>
       <div class="card">
@@ -44,7 +169,7 @@
       <h2>💡 Projects</h2>
       <div class="card">
         <h3>Interactive Resume Portfolio</h3>
-        <p>HTML, CSS, JS – includes Astro animation and transition</p>
+        <p>Built with HTML, CSS, JS – includes Astro intro and loader</p>
       </div>
     </section>
 
@@ -56,6 +181,20 @@
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    function startTransition() {
+      const landing = document.getElementById('landing');
+      const loading = document.getElementById('loading');
+      const portfolio = document.getElementById('portfolio');
+
+      landing.style.display = 'none';
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        portfolio.style.display = 'block';
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
