@@ -1,87 +1,112 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
   background: #f4f6f9;
-  color: #333;
+  color: #222;
 }
 
-header {
-  background: #0b5cab;
-  color: white;
-  padding: 20px;
+/* Landing Page */
+.landing {
+  height: 100vh;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-section {
-  padding: 20px;
-  max-width: 800px;
+.overlay {
+  z-index: 2;
+  color: white;
+  position: relative;
+}
+
+.astro-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.landing h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.landing button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: #0b5cab;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.landing button:hover {
+  background-color: #f0f0f0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Loading screen */
+.loading-screen {
+  display: none;
+  background-color: #0b5cab;
+  color: white;
+  height: 100vh;
+  text-align: center;
+  padding-top: 20%;
+}
+
+.loader {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Main Portfolio Content */
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+  animation: fadeIn 1s ease;
+}
+
+h2 {
+  margin-top: 40px;
 }
 
 .card {
   background: white;
-  padding: 15px;
-  margin: 15px 0;
+  padding: 20px;
+  margin: 20px 0;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   cursor: pointer;
 }
 
 .card .details {
   display: none;
   margin-top: 10px;
-}
-
-.card img {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 8px;
-  margin-top: 10px;
-}
-
-.astro {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 70px;
-  cursor: pointer;
-}
-
-/* Varonis hero image styling */
-.hero-image {
-  position: relative;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.hero-image img {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.hero-image img:hover {
-  transform: scale(1.02);
-}
-
-.popup {
-  display: none;
-  background: #fffbe6;
-  color: #333;
-  padding: 12px 16px;
-  border: 1px solid #f7e16a;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  position: absolute;
-  bottom: -60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 400px;
-  font-size: 14px;
-  z-index: 2;
 }
