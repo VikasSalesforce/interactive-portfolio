@@ -2,234 +2,3100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pravalika Kethadi | Salesforce Developer Portfolio</title>
+  <title>Vikas | Salesforce Developer Console Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
+    :root {
+      --bg: #020617;
+      --bg-alt: #020617;
+      --bg-elevated: #050816;
+      --panel: #0b1220;
+      --panel-soft: #0f172a;
+      --accent: #1b96ff;
+      --accent-soft: rgba(27, 150, 255, 0.22);
+      --accent-strong: #38bdf8;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: #1f2937;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 30px 60px rgba(0, 0, 0, 0.8);
+      --danger: #f97373;
+      --success: #22c55e;
+      --warn: #facc15;
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.26s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f2f5;
-      color: #222;
-      transition: background 0.3s, color 0.3s;
+      padding: 0;
     }
-    .dark-mode {
-      background: #121212;
-      color: #eee;
+
+    html, body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.35), transparent 55%),
+        radial-gradient(circle at 90% 0, rgba(96,165,250,0.2), transparent 60%),
+        radial-gradient(circle at bottom, rgba(15,23,42,0.9), rgba(2,6,23,1));
+      color: var(--text-main);
+      overflow-x: hidden;
     }
-    #landing {
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* -----------------------------------------
+       Top nav
+    ----------------------------------------- */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: linear-gradient(90deg, #020617 0%, #020617 45%, #020617 72%, #020617 100%);
+      border-bottom: 1px solid rgba(15,23,42,0.9);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    .top-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sf-logo-orb {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 20% 0%, #ffffff, #bfdbfe 40%, #1d4ed8 82%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.45),
+                  0 0 0 4px rgba(37,99,235,0.3);
+      font-weight: 800;
+      font-size: 18px;
+      color: #0b1120;
+    }
+
+    .top-nav-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-nav-title-main {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .top-nav-title-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .top-nav-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 0 10px;
+    }
+
+    .top-search {
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+    }
+
+    .top-search input {
+      width: 100%;
+      padding: 7px 30px;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 12px;
+      outline: none;
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.4);
+    }
+
+    .top-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.5;
+      font-size: 13px;
+    }
+
+    .top-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      background: rgba(15,23,42,0.95);
+      font-size: 11px;
+      color: #e5e7eb;
+    }
+
+    .pill small {
+      color: var(--text-muted);
+      font-size: 10px;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 20% 0%, #f9fafb, #bfdbfe 45%, #1e3a8a 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #020617;
+      border: 1px solid rgba(255,255,255,0.7);
+      cursor: pointer;
+    }
+
+    /* -----------------------------------------
+       Layout
+    ----------------------------------------- */
+    .app-shell {
+      display: grid;
+      grid-template-columns: 72px minmax(0,1fr);
+      min-height: calc(100vh - 52px);
+    }
+
+    @media (max-width: 900px) {
+      .app-shell {
+        grid-template-columns: 56px minmax(0,1fr);
+      }
+    }
+
+    /* -----------------------------------------
+       Left rail nav
+    ----------------------------------------- */
+    .rail {
+      position: relative;
+      background: radial-gradient(circle at top, rgba(30,64,175,0.6), transparent 55%),
+                  rgba(2,6,23,0.98);
+      border-right: 1px solid rgba(15,23,42,0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #000;
-      color: #fff;
-      text-align: center;
+      padding: 14px 8px;
+      gap: 6px;
     }
-    .astro-img {
-      width: 280px;
-      animation: float 4s ease-in-out infinite, glow 2s infinite alternate;
+
+    .rail-section-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: #6b7280;
+      margin: 4px 0 8px;
     }
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 0px #0ff); }
-      to { filter: drop-shadow(0 0 20px #0ff); }
-    }
-    #loading {
-      display: none;
-      height: 100vh;
-      background: #000;
-      color: #0ff;
-      font-size: 1.8rem;
+
+    .rail-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      border: 1px solid rgba(51,65,85,0.9);
+      background: rgba(15,23,42,0.96);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: monospace;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        transform var(--transition-fast),
+        border var(--transition-fast),
+        color var(--transition-fast),
+        box-shadow var(--transition-fast);
+      position: relative;
     }
-    #portfolio {
-      display: none;
-      padding: 40px 20px;
-      max-width: 960px;
-      margin: auto;
+
+    .rail-btn span {
+      pointer-events: none;
     }
-    .section-title {
-      font-size: 1.8em;
-      margin-top: 40px;
+
+    .rail-btn.active,
+    .rail-btn:hover {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.3), transparent 60%),
+                  rgba(15,23,42,1);
+      border-color: rgba(59,130,246,0.95);
+      color: #e5e7eb;
+      box-shadow: 0 12px 26px rgba(15,23,42,0.9);
+      transform: translateY(-1px);
     }
-    .card {
-      background: white;
-      padding: 20px;
-      margin-bottom: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+
+    .rail-tooltip {
+      position: absolute;
+      left: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(15,23,42,0.98);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55,65,81,0.9);
+      font-size: 11px;
+      white-space: nowrap;
       opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
+      pointer-events: none;
+      transition: opacity var(--transition-fast), transform var(--transition-fast);
     }
-    .card.revealed {
+
+    .rail-btn:hover .rail-tooltip {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(6px,-50%);
     }
-    .resume-btn, .chatbot-icon, .tts-icon, .dark-toggle, .music-toggle, .mic-btn {
-      position: fixed;
-      z-index: 999;
-      background: #007bff;
-      color: white;
-      border: none;
+
+    .rail-footer {
+      margin-top: auto;
+      font-size: 10px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    /* -----------------------------------------
+       Main view
+    ----------------------------------------- */
+    .app-main {
+      padding: 14px 16px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .breadcrumbs {
+      font-size: 11px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .breadcrumbs span:last-child {
+      color: #e5e7eb;
+    }
+
+    .screen-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .screen-title-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .screen-title-main h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .screen-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .screen-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(56,189,248,0.4);
+      color: #7dd3fc;
+      background: rgba(15,23,42,0.9);
+    }
+
+    .screen-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 12px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.96);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border var(--transition-fast);
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: linear-gradient(135deg, #1b96ff, #38bdf8);
+      color: #020617;
+      font-weight: 500;
+      box-shadow: 0 16px 32px rgba(8,47,73,0.9);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(15,23,42,0.9);
+      border-color: rgba(148,163,184,0.9);
+    }
+
+    .btn.primary:hover {
+      box-shadow: 0 18px 34px rgba(8,47,73,1);
+    }
+
+    /* -----------------------------------------
+       Screens (apps)
+    ----------------------------------------- */
+    .screen {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0,2.1fr) minmax(0,1.2fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .panel {
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.35), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(15,23,42,0.95), rgba(15,23,42,1));
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(31,41,55,0.95);
+      padding: 18px 18px 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #4b5563;
+    }
+
+    .dot.red { background: #fb5f57; }
+    .dot.yellow { background: #febc30; }
+    .dot.green { background: #28c840; }
+
+    .panel-body {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .label {
+      font-size: 11px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 4px;
+    }
+
+    .about-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* -----------------------------------------
+       App Launcher screen
+    ----------------------------------------- */
+    .launcher-hero {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .mascot-orbit-wrap {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      padding: 12px;
+      position: relative;
+      background: radial-gradient(circle at 20% 0%, #eff6ff, #1e40af 75%);
+      padding: 10px;
+      box-shadow: 0 20px 40px rgba(15,23,42,0.95);
+      animation: floatMascot 5.4s ease-in-out infinite;
+    }
+
+    .mascot-orbit-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 20% 0%, #1b96ff, #020617 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mascot-head {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      position: relative;
+      box-shadow: 0 8px 16px rgba(15,23,42,0.9);
+    }
+
+    .mascot-visor {
+      position: absolute;
+      inset: 12px 8px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #020617, #22d3ee);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mascot-eye {
+      width: 26px;
+      height: 14px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #38bdf8, #020617 80%);
+      box-shadow: 0 0 16px rgba(56,189,248,0.9);
+    }
+
+    .mascot-body-small {
+      width: 46px;
+      height: 46px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #e5e7eb, #cbd5f5);
+      position: absolute;
+      top: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 10px 22px rgba(15,23,42,0.9);
+    }
+
+    .mascot-badge {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #020617;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
+    .mascot-spark {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 14px rgba(34,197,94,0.95);
+    }
+
+    .mascot-spark.s1 { top: 16%; left: 18%; }
+    .mascot-spark.s2 { top: 18%; right: 14%; background:#38bdf8; box-shadow:0 0 14px rgba(56,189,248,0.9); }
+    .mascot-spark.s3 { bottom: 18%; left: 36%; background:#facc15; box-shadow:0 0 14px rgba(250,204,21,0.9); }
+
+    .mascot-orbit-line {
+      position: absolute;
+      width: 145%;
+      height: 145%;
+      border-radius: 999px;
+      border: 1px dashed rgba(148,163,184,0.75);
+      top: -22%;
+      left: -22%;
+      transform: rotate(-18deg);
+      opacity: 0.8;
+    }
+
+    @keyframes floatMascot {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .launcher-text h2 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .launcher-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .launcher-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 950px) {
+      .launcher-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      .launcher-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .launcher-app {
+      border-radius: var(--radius-md);
+      padding: 10px;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.25), transparent 60%),
+        rgba(15,23,42,0.96);
+      border: 1px solid rgba(55,65,81,0.95);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .launcher-app:hover {
+      transform: translateY(-2px) translateX(1px);
+      border-color: rgba(59,130,246,0.95);
+      box-shadow: 0 18px 36px rgba(15,23,42,1);
+      background:
+        radial-gradient(circle at top left, rgba(37,99,235,0.4), transparent 60%),
+        rgba(15,23,42,1);
+    }
+
+    .launcher-app-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .launcher-app-pill {
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #93c5fd;
+    }
+
+    .launcher-app-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+.profile-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 28px;
+  margin-top: 28px;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--text-main);
+}
+
+.exp-block, .edu-block {
+  margin-bottom: 22px;
+}
+
+.exp-block h4, .edu-block h4 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sub {
+  color: var(--text-muted);
+  margin: 4px 0 12px 0;
+}
+
+.profile-card ul {
+  padding-left: 22px;
+  line-height: 1.5;
+}
+
+.profile-card ul li {
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.cert-list li {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+
+    /* -----------------------------------------
+       Lead dashboard
+    ----------------------------------------- */
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 1000px) {
+      .metrics-row {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    .metric-card {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.3), transparent 60%),
+                  rgba(15,23,42,0.96);
+      border: 1px solid rgba(75,85,99,0.95);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      cursor: pointer;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border var(--transition-fast),
+        background var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.16), transparent 65%);
+      opacity: 0;
+      transition: opacity 0.25s ease-out;
+      pointer-events: none;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(59,130,246,1);
+      box-shadow: 0 16px 32px rgba(15,23,42,1);
+    }
+
+    .metric-card.active::after {
+      opacity: 1;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: #cbd5f5;
+    }
+
+    .metric-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: #f9fafb;
+    }
+
+    .metric-sub {
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .lead-table-wrap {
+      margin-top: 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,0.95);
+      overflow: hidden;
+      background: rgba(8,15,31,0.98);
+      max-height: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lead-table-header {
+      display: flex;
+      padding: 6px 9px;
+      border-bottom: 1px solid rgba(30,64,175,0.6);
+      background: linear-gradient(90deg, rgba(15,23,42,1), rgba(17,24,39,1));
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .lead-col {
+      flex: 1;
+    }
+
+    .lead-col.name { flex: 1.4; }
+    .lead-col.small { flex: 0.7; }
+
+    .lead-table-body {
+      overflow-y: auto;
+      font-size: 11px;
+    }
+
+    .lead-row {
+      display: flex;
+      padding: 6px 9px;
+      border-bottom: 1px solid rgba(30,41,59,1);
+      align-items: center;
+      transition: background var(--transition-fast);
       cursor: pointer;
     }
-    .resume-btn { bottom: 20px; left: 20px; }
-    .chatbot-icon { bottom: 20px; right: 20px; }
-    .tts-icon { bottom: 90px; right: 20px; }
-    .mic-btn { bottom: 160px; right: 20px; }
-    .dark-toggle { top: 20px; right: 20px; }
-    .music-toggle { top: 20px; left: 20px; }
-    .chat-window {
-      position: fixed;
-      bottom: 100px;
-      right: 80px;
-      background: white;
-      color: black;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 10px;
-      width: 260px;
-      display: none;
+
+    .lead-row:nth-child(even) {
+      background: rgba(15,23,42,0.9);
     }
-    .dark-mode .chat-window { background: #333; color: white; }
+
+    .lead-row:hover {
+      background: rgba(37,99,235,0.28);
+    }
+
+    .lead-name-link {
+      color: #bfdbfe;
+      text-decoration: underline dotted;
+    }
+
+    .eng-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin-right: 4px;
+    }
+
+    .eng-high { background: #22c55e; }
+    .eng-med { background: #facc15; }
+    .eng-low { background: #f97316; }
+
+    /* Lead modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal {
+      width: min(420px, 94vw);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.3), transparent 60%),
+        rgba(15,23,42,0.98);
+      border-radius: 18px;
+      border: 1px solid rgba(55,65,81,1);
+      box-shadow: 0 26px 60px rgba(0,0,0,0.9);
+      padding: 14px 14px 16px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .modal-header h3 {
+      font-size: 15px;
+    }
+
+    .modal-close {
+      border: none;
+      background: transparent;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .modal-body {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .modal-field-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(148,163,184,0.7);
+      color: #e5e7eb;
+      background: rgba(15,23,42,0.9);
+    }
+
+    /* -----------------------------------------
+       Chat simulator (Embedded Messaging)
+    ----------------------------------------- */
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 9px;
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(90deg, #0f172a, #1d4ed8);
+      color: #e5e7eb;
+      font-size: 12px;
+    }
+
+    .chat-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 20% 0%, #eff6ff, #1d4ed8 80%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #020617;
+    }
+
+    .chat-header-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .chat-title {
+      font-weight: 500;
+    }
+
+    .chat-subtitle {
+      font-size: 11px;
+      opacity: 0.85;
+    }
+
+    .chat-header-actions {
+      display: flex;
+      gap: 4px;
+    }
+
+    .chat-header-btn {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(191,219,254,0.8);
+      background: rgba(15,23,42,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .chat-header-btn:hover {
+      background: rgba(15,23,42,0.9);
+      transform: translateY(-1px);
+    }
+
+    .chat-transfer-bar {
+      display: none;
+      padding: 5px 9px;
+      font-size: 11px;
+      color: #e5e7eb;
+      background: linear-gradient(90deg, rgba(59,130,246,0.25), rgba(37,99,235,0.1));
+      border-bottom: 1px solid rgba(37,99,235,0.8);
+    }
+
+    .chat-transfer-bar.active {
+      display: block;
+    }
+
+    .dots-loader {
+      display: inline-flex;
+      gap: 3px;
+      margin-left: 4px;
+    }
+
+    .dots-loader span {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #bfdbfe;
+      opacity: 0.4;
+      animation: dots 1s infinite ease-in-out;
+    }
+
+    .dots-loader span:nth-child(2) { animation-delay: 0.15s; }
+    .dots-loader span:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes dots {
+      0%,100% { transform: translateY(0); opacity: 0.3; }
+      50% { transform: translateY(-3px); opacity: 1; }
+    }
+
+    .chat-body {
+      height: 220px;
+      background: radial-gradient(circle at top, rgba(15,23,42,1), rgba(3,7,18,1));
+      border: 1px solid rgba(31,41,55,1);
+      border-top: none;
+      display: flex;
+      flex-direction: column;
+      border-radius: 0 0 10px 10px;
+      overflow: hidden;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 8px 9px;
+      overflow-y: auto;
+      font-size: 11px;
+    }
+
+    .chat-message {
+      max-width: 80%;
+      margin-bottom: 6px;
+      padding: 6px 8px;
+      border-radius: 12px;
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .chat-message.bot {
+      align-self: flex-start;
+      background: rgba(30,64,175,0.9);
+      color: #e5e7eb;
+    }
+
+    .chat-message.agent {
+      align-self: flex-start;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(55,65,81,1);
+    }
+
+    .chat-message.user {
+      align-self: flex-end;
+      background: #22c55e;
+      color: #022c22;
+    }
+
+    .chat-input-row {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      gap: 6px;
+      border-top: 1px solid rgba(30,41,59,1);
+      background: rgba(3,7,18,0.98);
+    }
+
+    .chat-input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid rgba(51,65,85,1);
+      background: rgba(15,23,42,0.96);
+      color: #e5e7eb;
+      font-size: 11px;
+      padding: 5px 9px;
+      outline: none;
+    }
+
+    .chat-send-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(37,99,235,1);
+      background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+      color: #f9fafb;
+      font-size: 11px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .chip {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: rgba(15,23,42,0.95);
+      color: #e5e7eb;
+    }
+
+    /* -----------------------------------------
+       Terminal (Apex logs)
+    ----------------------------------------- */
+    .terminal {
+      border-radius: 12px;
+      border: 1px solid rgba(51,65,85,1);
+      background: #020617;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 8px;
+      background: linear-gradient(90deg, #020617, #0b1120);
+      border-bottom: 1px solid rgba(30,64,175,0.8);
+    }
+
+    .terminal-title {
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    .terminal-body {
+      padding: 7px 9px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .terminal-line {
+      white-space: pre-wrap;
+      margin-bottom: 2px;
+    }
+
+    .terminal-prompt {
+      color: #22c55e;
+      margin-right: 4px;
+    }
+
+    .terminal-input-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .terminal-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      color: #e5e7eb;
+      outline: none;
+      font-size: 11px;
+      font-family: inherit;
+    }
+
+    .log-info { color: #60a5fa; }
+    .log-success { color: #4ade80; }
+    .log-warn { color: #facc15; }
+    .log-error { color: #fb7185; }
+
+    /* -----------------------------------------
+       Flow mini
+    ----------------------------------------- */
+    .flow-canvas {
+      position: relative;
+      border-radius: 12px;
+      border: 1px dashed rgba(55,65,81,1);
+      padding: 16px;
+      background: radial-gradient(circle at top, rgba(15,23,42,0.96), rgba(3,7,18,1));
+      min-height: 220px;
+      overflow: hidden;
+    }
+
+    .flow-node {
+      position: absolute;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.98);
+      border: 1px solid rgba(75,85,99,1);
+      font-size: 11px;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    .flow-node:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 26px rgba(15,23,42,1);
+      border-color: rgba(59,130,246,1);
+    }
+
+    .flow-node.active {
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.35), transparent 70%),
+                  rgba(15,23,42,1);
+      border-color: rgba(37,99,235,1);
+    }
+
+    .flow-node.start { left: 20px; top: 26px; }
+    .flow-node.decision { left: 180px; top: 70px; }
+    .flow-node.assign { left: 360px; top: 40px; }
+    .flow-node.action { left: 540px; top: 80px; }
+    .flow-node.end { left: 720px; top: 40px; }
+
+    @media (max-width: 900px) {
+      .flow-node.start { left: 8px; top: 20px; }
+      .flow-node.decision { left: 150px; top: 80px; }
+      .flow-node.assign { left: 40px; top: 140px; }
+      .flow-node.action { left: 200px; top: 180px; }
+      .flow-node.end { left: 120px; top: 230px; }
+      .flow-canvas { min-height: 260px; }
+    }
+
+    .flow-connector {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, transparent);
+      opacity: 0.8;
+      transform-origin: left center;
+    }
+
+    .flow-connector.active {
+      box-shadow: 0 0 20px rgba(56,189,248,0.8);
+    }
+
+    /* simple positions for desktop */
+    .fc-1 { left: 80px; top: 42px; width: 110px; }
+    .fc-2 { left: 240px; top: 84px; width: 120px; }
+    .fc-3 { left: 420px; top: 72px; width: 120px; }
+    .fc-4 { left: 600px; top: 72px; width: 120px; }
+
+    @media (max-width: 900px) {
+      .fc-1 { left: 70px; top: 36px; width: 80px; }
+      .fc-2 { left: 140px; top: 100px; width: 40px; transform: rotate(90deg); transform-origin: left center; }
+      .fc-3 { left: 90px; top: 140px; width: 70px; transform: rotate(90deg); transform-origin: left center; }
+      .fc-4 { left: 180px; top: 200px; width: 80px; transform: rotate(45deg); transform-origin: left center; }
+    }
+
+    .flow-legend {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* -----------------------------------------
+       Experience Cloud form sim
+    ----------------------------------------- */
+    .exp-form {
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,1);
+      padding: 10px 11px;
+      background: rgba(15,23,42,0.96);
+      font-size: 11px;
+    }
+
+    .field-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 6px;
+    }
+
+    .field-row label {
+      margin-bottom: 2px;
+      color: #cbd5f5;
+    }
+
+    .field-row input,
+    .field-row select {
+      border-radius: 8px;
+      border: 1px solid rgba(55,65,81,1);
+      background: rgba(15,23,42,0.98);
+      color: #e5e7eb;
+      padding: 4px 7px;
+      outline: none;
+      font-size: 11px;
+    }
+
+    .field-row input[readonly] {
+      opacity: 0.7;
+    }
+
+    .exp-small-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 6px;
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 10px;
+      margin: 3px 0 6px;
+    }
+
+    .hint {
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    /* -----------------------------------------
+       Integrations monitor
+    ----------------------------------------- */
+    .int-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .int-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .int-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .int-card {
+      border-radius: 12px;
+      padding: 8px 9px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(55,65,81,1);
+      font-size: 11px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .int-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pill {
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid transparent;
+    }
+
+    .status-ok {
+      background: rgba(22,163,74,0.2);
+      border-color: rgba(22,163,74,0.8);
+      color: #bbf7d0;
+    }
+
+    .status-warn {
+      background: rgba(234,179,8,0.16);
+      border-color: rgba(234,179,8,0.8);
+      color: #facc15;
+    }
+
+    .status-down {
+      background: rgba(239,68,68,0.18);
+      border-color: rgba(239,68,68,0.9);
+      color: #fecaca;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    /* -----------------------------------------
+       Resume / contact
+    ----------------------------------------- */
+    .stack-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 11px;
+    }
+
+    .stack-item {
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.96);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .link-chip {
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      background: rgba(15,23,42,0.96);
+      font-size: 11px;
+      color: #bfdbfe;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .link-chip:hover {
+      background: rgba(30,64,175,0.95);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15,23,42,1);
+    }
+
+    /* -----------------------------------------
+       Command palette
+    ----------------------------------------- */
+    .cmd-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,0.85);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 80px;
+      z-index: 80;
+    }
+
+    .cmd-overlay.active {
+      display: flex;
+    }
+
+    .cmd-panel {
+      width: min(520px, 96vw);
+      background: rgba(15,23,42,0.98);
+      border-radius: 14px;
+      border: 1px solid rgba(55,65,81,1);
+      box-shadow: 0 30px 70px rgba(0,0,0,0.95);
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    .cmd-input-row {
+      padding: 8px 10px;
+      border-bottom: 1px solid rgba(31,41,55,1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cmd-input-row input {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #e5e7eb;
+      font-size: 12px;
+    }
+
+    .cmd-list {
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .cmd-item {
+      padding: 7px 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .cmd-item:hover,
+    .cmd-item.active {
+      background: rgba(30,64,175,0.55);
+    }
+
+    .cmd-shortcut {
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    footer {
+      padding: 8px 16px 14px;
+      font-size: 11px;
+      color: #6b7280;
+      text-align: right;
+      border-top: 1px solid rgba(15,23,42,1);
+      background: radial-gradient(circle at top, rgba(15,23,42,0.95), rgba(3,7,18,1));
+    }
+
+    @media (max-width: 720px) {
+      .screen-title-row {
+        align-items: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
+  <header class="top-nav">
+    <div class="top-nav-left">
+      <div class="sf-logo-orb">V</div>
+      <div class="top-nav-title">
+        <span class="top-nav-title-main">Salesforce Developer Console</span>
+        <span class="top-nav-title-sub">Vikas • Portfolio Org (Dark Mode)</span>
+      </div>
+    </div>
+    <div class="top-nav-center">
+      <div class="top-search">
+        <span class="top-search-icon">🔍</span>
+        <input type="text" placeholder="Quick find: apps, LWCs, Apex, integrations..." />
+      </div>
+    </div>
+    <div class="top-nav-right">
+      <div class="pill">Org: <strong>Developer</strong> <small>| sfdx:auth</small></div>
+      <div class="pill">Status: <span id="topStatus">Deploying...</span></div>
+      <div class="avatar" id="avatarBtn">V</div>
+    </div>
+  </header>
 
-<audio id="bgMusic" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+  <div class="app-shell">
+    <!-- Left rail -->
+    <nav class="rail">
+      <div class="rail-section-label">Apps</div>
 
-<!-- Astro Landing Page -->
-<section id="landing">
-  <img class="astro-img" src="https://www.varonis.com/hubfs/Blog_Agentforce_202501_V1.png" alt="Astro Bot" />
-  <h1>👩‍💻 Pravalika Kethadi</h1>
-  <p>Salesforce Developer | Automation Enthusiast | Experience Cloud Builder</p>
-  <button onclick="startPortfolio()">🚀 Explore More</button>
-</section>
+      <button class="rail-btn active" data-screen="launcher">
+        <span>⬜</span>
+        <div class="rail-tooltip">App Launcher</div>
+      </button>
+      <button class="rail-btn" data-screen="developer">
+        <span>💻</span>
+        <div class="rail-tooltip">Developer Console</div>
+      </button>
+      <button class="rail-btn" data-screen="leads">
+        <span>📊</span>
+        <div class="rail-tooltip">Lead Intelligence</div>
+      </button>
+      <button class="rail-btn" data-screen="chat">
+        <span>💬</span>
+        <div class="rail-tooltip">Embedded Messaging</div>
+      </button>
+      <button class="rail-btn" data-screen="flow">
+        <span>🔁</span>
+        <div class="rail-tooltip">Flow Mini</div>
+      </button>
+      <button class="rail-btn" data-screen="experience">
+        <span>🌉</span>
+        <div class="rail-tooltip">Experience Cloud</div>
+      </button>
+      <button class="rail-btn" data-screen="integrations">
+        <span>🌐</span>
+        <div class="rail-tooltip">Integrations</div>
+      </button>
+      <button class="rail-btn" data-screen="resume">
+        <span>📄</span>
+        <div class="rail-tooltip">Resume & Contact</div>
+      </button>
 
-<!-- Loading Screen -->
-<section id="loading">🚀 Launching Pravalika's Portfolio...</section>
+      <div class="rail-footer">
+        Press <strong>Ctrl + K</strong><br />to open command palette
+      </div>
+    </nav>
 
-<!-- Main Portfolio Section -->
-<section id="portfolio">
-  <div class="section-title">📌 Experience</div>
-  <div class="card">
-    <h3>Salesforce Admin/Developer – Jade Global Software Pvt Ltd</h3>
-    <p>May 2020 – June 2023</p>
+    <!-- Main -->
+    <main class="app-main">
+      <div class="breadcrumbs">
+        <span>Home</span><span>›</span><span id="crumb">App Launcher</span>
+      </div>
+
+      <div class="screen-title-row">
+        <div class="screen-title-main">
+          <h1 id="screenTitle">App Launcher</h1>
+          <div class="screen-subtitle" id="screenSubtitle">
+            Jump into simulations that mirror the real Salesforce work I do: LWCs, Apex, chat, flows, and Experience Cloud.
+          </div>
+        </div>
+        <div class="screen-actions">
+          <div class="screen-tag" id="screenTag">
+            <span>🔥 Dark Lightning Experience</span>
+          </div>
+          <button class="btn primary" id="btnRecruiter">
+            👀 View as Hiring Manager
+          </button>
+        </div>
+      </div>
+
+      <!-- App Launcher Screen -->
+      <section class="screen active" id="screen-launcher">
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span>🚀 App Launcher</span>
+            </div>
+            <div class="dots">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="launcher-hero">
+              <div class="mascot-orbit-wrap">
+                <div class="mascot-orbit-inner">
+                  <div class="mascot-head">
+                    <div class="mascot-visor">
+                      <div class="mascot-eye"></div>
+                    </div>
+                  </div>
+                  <div class="mascot-body-small">
+                    <div class="mascot-badge">SF</div>
+                  </div>
+                  <span class="mascot-spark s1"></span>
+                  <span class="mascot-spark s2"></span>
+                  <span class="mascot-spark s3"></span>
+                  <div class="mascot-orbit-line"></div>
+                </div>
+              </div>
+              <div class="launcher-text">
+                <h2>Welcome to my Salesforce portfolio org.</h2>
+                <p>
+                  Each tile below opens a focused simulation of something I actually build:
+                  Lightning components, Apex automation, chat headers, Experience Cloud forms, and more.
+                  Treat this like a safe mini-org to inspect how I think about design and development.
+                </p>
+              </div>
+            </div>
+
+            <div class="launcher-grid">
+              <div class="launcher-app" data-open-screen="developer">
+                <div class="launcher-app-title">
+                  <span>💻 Developer Console</span>
+                  <span class="launcher-app-pill">Apex & LWC</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Lightweight console with Apex logs, test runs, and deployment simulations.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="leads">
+                <div class="launcher-app-title">
+                  <span>📊 Lead Intelligence Dashboard</span>
+                  <span class="launcher-app-pill">LWC</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Metric cards + engagement table for reps to see who’s opening and clicking.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="chat">
+                <div class="launcher-app-title">
+                  <span>💬 Embedded Messaging</span>
+                  <span class="launcher-app-pill">Support</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Bot → transfer → agent simulation with minimize behavior and scroll logic.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="flow">
+                <div class="launcher-app-title">
+                  <span>🔁 Flow Builder Mini</span>
+                  <span class="launcher-app-pill">Admin</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Visual mini-flow that highlights a path through decision, assignment, and action.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="experience">
+                <div class="launcher-app-title">
+                  <span>🌉 Experience Cloud Portal</span>
+                  <span class="launcher-app-pill">LWC + Cases</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Driver upgrade form simulation with region-based logic and routing.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="integrations">
+                <div class="launcher-app-title">
+                  <span>🌐 Integrations Monitor</span>
+                  <span class="launcher-app-pill">APIs</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Status board for NeverBounce, DocuSign, ZoomInfo, RingCentral, and Marketing Cloud.
+                </p>
+              </div>
+              <div class="launcher-app" data-open-screen="resume">
+                <div class="launcher-app-title">
+                  <span>📄 Resume & Contact</span>
+                  <span class="launcher-app-pill">Profile</span>
+                </div>
+                <p class="launcher-app-desc">
+                  Short summary, core stack, and links to get in touch or request the PDF resume.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer Console screen -->
+      <section class="screen" id="screen-developer">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🧪 Apex Logs & Test Runner</span>
+              </div>
+              <div class="dots">
+                <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                I keep Apex logic bulk-safe, test-covered, and separated into handler classes. The terminal below simulates
+                the kinds of jobs I actually run: lead validation, cleanup, and integration tests.
+              </p>
+              <div class="terminal" id="terminal">
+                <div class="terminal-header">
+                  <div class="dots">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  </div>
+                  <div class="terminal-title">sfdx@vikas-dev: ~ /src/main/apex</div>
+                </div>
+                <div class="terminal-body" id="terminalBody">
+                  <div class="terminal-line">
+                    Type <span class="log-info">help</span> to see example commands.
+                  </div>
+                  <div class="terminal-input-row">
+                    <span class="terminal-prompt">vikas-dev %</span>
+                    <input class="terminal-input" id="terminalInput" autocomplete="off" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🧩 Patterns I use</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">Core automation approach</div>
+              <p class="about-text">
+                • Trigger handler classes per object (Lead, Contact, Case) with recursion guards and bulk-safe lists.<br />
+                • Queueable / future callouts for external services like NeverBounce and DocuSign.<br />
+                • Batch Apex for cleanup and backfills, scheduled overnight to avoid user friction.<br />
+                • Tests targeted at business logic, not just coverage numbers.
+              </p>
+              <div class="label" style="margin-top:10px;">Sample classes in this org</div>
+              <ul style="padding-left:16px; margin-top:4px; line-height:1.6;">
+                <li><strong>LeadTriggerHandler</strong> – new lead routing, cadences, and email verification.</li>
+                <li><strong>EquipmentUpgradeService</strong> – contact/order lookup and case creation.</li>
+                <li><strong>EmailVerificationQueueable</strong> – NeverBounce callouts with retry logic.</li>
+                <li><strong>LeadCleanupBatch</strong> – closes out stale cadences and bad data leads.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lead Intelligence screen -->
+      <section class="screen" id="screen-leads">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>📊 Lead Intelligence Dashboard</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                This simulates an LWC I build for sales: metric cards on top, table of engaged leads below.
+                Clicking a card filters the list so reps know exactly who to call next.
+              </p>
+              <div class="metrics-row" id="metricRow">
+                <div class="metric-card active" data-filter="all">
+                  <div class="metric-label">Total Leads</div>
+                  <div class="metric-value" id="metricTotal">0</div>
+                  <div class="metric-sub">All leads with tracked engagement</div>
+                </div>
+                <div class="metric-card" data-filter="hot">
+                  <div class="metric-label">High Engagement</div>
+                  <div class="metric-value" id="metricHot">0</div>
+                  <div class="metric-sub">Opened 3+ times or clicked</div>
+                </div>
+                <div class="metric-card" data-filter="warm">
+                  <div class="metric-label">Warm</div>
+                  <div class="metric-value" id="metricWarm">0</div>
+                  <div class="metric-sub">1–2 opens, no clicks yet</div>
+                </div>
+                <div class="metric-card" data-filter="cold">
+                  <div class="metric-label">Cold / No Opens</div>
+                  <div class="metric-value" id="metricCold">0</div>
+                  <div class="metric-sub">Sent but never opened</div>
+                </div>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;font-size:11px;">
+                <span class="hint">
+                  Click a metric to filter. Click a lead name to open a mini record preview.
+                </span>
+                <button class="btn" id="btnSortOpens" style="padding:4px 10px;font-size:11px;">
+                  ⬆ Sort by Opens
+                </button>
+              </div>
+              <div class="lead-table-wrap">
+                <div class="lead-table-header">
+                  <div class="lead-col name">Lead Name</div>
+                  <div class="lead-col small">Opens</div>
+                  <div class="lead-col small">Clicks</div>
+                  <div class="lead-col small">First Open</div>
+                  <div class="lead-col small">Last Open</div>
+                  <div class="lead-col small">Eng.</div>
+                </div>
+                <div class="lead-table-body" id="leadTableBody"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>ℹ️ How it works (Apex + LWC)</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">Backend</div>
+              <p class="about-text">
+                Apex aggregates engagement: first open, last open, total opens, clicks, and replies per lead.
+                I return that in a slim view-model so the LWC can render quickly and sort/filter client side.
+              </p>
+              <div class="label" style="margin-top:8px;">Frontend</div>
+              <p class="about-text">
+                The LWC uses metric cards as quick filters and a datatable for details. Reps don’t have to scroll activity
+                timeline anymore; they can hover metrics, click into leads, and work straight from an engagement-first view.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Chat / Embedded Messaging screen -->
+      <section class="screen" id="screen-chat">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>💬 Embedded Messaging Simulation</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                This simulates a custom LWC header + transcript area I build for Messaging for Web / In-App:
+                bot → transfer bar → agent join, with scroll behavior and header updates.
+              </p>
+              <div style="margin-bottom:6px;font-size:11px;">
+                <button class="btn primary" id="btnStartChat" style="padding:5px 11px;font-size:11px;">▶ Run Chat Scenario</button>
+                <span class="hint" style="margin-left:6px;">Watch the header change from bot to &ldquo;Transferring...&rdquo; to agent.</span>
+              </div>
+              <div class="chat-header" id="chatHeader">
+                <div class="chat-header-left">
+                  <div class="chat-avatar" id="chatAvatar">B</div>
+                  <div class="chat-header-meta">
+                    <span class="chat-title" id="chatTitle">Foodja Bot</span>
+                    <span class="chat-subtitle" id="chatSubtitle">Answering quick questions</span>
+                  </div>
+                </div>
+                <div class="chat-header-actions">
+                  <button class="chat-header-btn" id="chatMinBtn">▁</button>
+                  <button class="chat-header-btn" id="chatCloseBtn">✕</button>
+                </div>
+              </div>
+              <div class="chat-transfer-bar" id="chatTransferBar">
+                Transferring you to a human agent
+                <span class="dots-loader"><span></span><span></span><span></span></span>
+              </div>
+              <div class="chat-body" id="chatBody">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-row" id="chatInputRow">
+                  <input class="chat-input" id="chatInput" placeholder="Type a quick reply..." />
+                  <button class="chat-send-btn" id="chatSendBtn">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🔧 What this represents</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">Events handled in real orgs</div>
+              <div class="chip-row">
+                <span class="chip">ConversationAgentJoined</span>
+                <span class="chip">ConversationMessageReceived</span>
+                <span class="chip">ConversationStatusChanged</span>
+                <span class="chip">Minimize / restore / end chat</span>
+              </div>
+              <p class="about-text" style="margin-top:8px;">
+                In production I subscribe to Salesforce Embedded Messaging events, update the header title,
+                show a separate transfer bar, and keep the scroll position pinned to the last message.
+                The simulation here shows that UX without exposing any real customer data.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Flow Builder mini screen -->
+      <section class="screen" id="screen-flow">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🔁 Flow Builder Mini</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                This is a visual mini-flow showing how I wire up record-triggered flows:
+                start → decision → assignments → actions → end. Click &ldquo;Highlight Path&rdquo; to see one path light up.
+              </p>
+              <button class="btn" id="btnHighlightFlow" style="padding:4px 10px;font-size:11px;margin-bottom:6px;">
+                ✨ Highlight happy path
+              </button>
+              <div class="flow-canvas" id="flowCanvas">
+                <div class="flow-node start" data-node="start">Start ✓</div>
+                <div class="flow-node decision" data-node="decision">Decision: Lead Type?</div>
+                <div class="flow-node assign" data-node="assign">Assignment: Owner & SLA</div>
+                <div class="flow-node action" data-node="action">Action: Create Task</div>
+                <div class="flow-node end" data-node="end">End</div>
+
+                <div class="flow-connector fc-1" data-connector="1"></div>
+                <div class="flow-connector fc-2" data-connector="2"></div>
+                <div class="flow-connector fc-3" data-connector="3"></div>
+                <div class="flow-connector fc-4" data-connector="4"></div>
+              </div>
+              <div class="flow-legend">
+                In real orgs I move more and more logic into Flows where possible, using Apex only for what truly
+                needs code (complex validations, integrations, or limits).
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>⚙️ Flow + Apex split</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">What I keep in Flow</div>
+              <ul style="padding-left:16px; line-height:1.7;">
+                <li>Routing rules that admins may need to adjust themselves.</li>
+                <li>Notifications, simple updates, and record-triggered logic.</li>
+                <li>Screen flows for internal user workflows.</li>
+              </ul>
+              <div class="label" style="margin-top:8px;">What I move to Apex</div>
+              <ul style="padding-left:16px; line-height:1.7;">
+                <li>External API calls, complex transformations, and retries.</li>
+                <li>Operations sensitive to governor limits.</li>
+                <li>Any logic that must be versioned and unit tested like code.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience Cloud screen -->
+      <section class="screen" id="screen-experience">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🌉 Experience Cloud – Driver Upgrade Form</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                This simulates the public LWC form I built for driver equipment upgrades.
+                In production it runs inside Experience Cloud, looks up the driver from their email,
+                and routes cases based on region and order thresholds.
+              </p>
+              <div class="exp-form" id="expForm">
+                <div class="field-row">
+                  <label>Email (URL param)</label>
+                  <input id="expEmail" placeholder="driver@example.com" />
+                </div>
+                <button class="btn primary" id="btnLookupDriver" style="padding:4px 10px;font-size:11px;margin-bottom:8px;">
+                  🔍 Lookup driver
+                </button>
+
+                <div id="expDriverBlock" style="display:none;">
+                  <div class="exp-small-columns">
+                    <div class="field-row">
+                      <label>Name</label>
+                      <input id="expName" readonly />
+                    </div>
+                    <div class="field-row">
+                      <label>Region</label>
+                      <input id="expRegion" readonly />
+                    </div>
+                  </div>
+                  <div class="exp-small-columns">
+                    <div class="field-row">
+                      <label>Yearly Orders</label>
+                      <input id="expOrders" readonly />
+                    </div>
+                    <div class="field-row">
+                      <label>Upgrade Tier</label>
+                      <input id="expTier" readonly />
+                    </div>
+                  </div>
+
+                  <div class="field-row">
+                    <label>Do you need a cart?</label>
+                    <div class="radio-row">
+                      <label><input type="radio" name="cart" value="yes" /> Yes</label>
+                      <label><input type="radio" name="cart" value="no" /> No</label>
+                    </div>
+                  </div>
+
+                  <div class="field-row">
+                    <label>Bag choice</label>
+                    <select id="expBag">
+                      <option value="">-- Select --</option>
+                      <option>Insulated 3-shelf bag</option>
+                      <option>Standard catering bag</option>
+                      <option>XL catering bag</option>
+                    </select>
+                  </div>
+
+                  <div class="field-row" id="expAddressRow" style="display:none;">
+                    <label>Mailing address (if region is mail-only)</label>
+                    <input id="expAddress" placeholder="Street, City, State, ZIP" />
+                    <div class="hint">For mail-only regions, upgrades are shipped to this address.</div>
+                  </div>
+
+                  <button class="btn" id="btnSubmitExp" style="padding:4px 10px;font-size:11px;margin-top:6px;">
+                    📦 Submit upgrade request
+                  </button>
+
+                  <div id="expMessage" class="hint" style="margin-top:6px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🌐 What happens behind the scenes</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">In the real org</div>
+              <ul style="padding-left:16px; line-height:1.7;">
+                <li>Lookup contact by email passed in the URL.</li>
+                <li>Determine tier (50 / 100 / 150 / 200 / 250+) from lifetime orders.</li>
+                <li>Show the right UI: bag, cart, or both, with images.</li>
+                <li>Create a Case with the correct record type, queue, and region routing.</li>
+                <li>Show a thank-you message tailored by region (pickup vs mail).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Integrations screen -->
+      <section class="screen" id="screen-integrations">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🌐 Integrations Monitor</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="about-text" style="margin-bottom:8px;">
+                A simple status board for external services I’ve worked with: NeverBounce, DocuSign, ZoomInfo,
+                RingCentral, and Marketing Cloud. In real life this would be a custom LWC surface or dashboard.
+              </p>
+              <button class="btn" id="btnPingIntegrations" style="padding:4px 10px;font-size:11px;margin-bottom:6px;">
+                🔄 Simulate health check
+              </button>
+              <div class="int-grid" id="integrationsGrid"></div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>🔗 How I approach integrations</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">Patterns</div>
+              <ul style="padding-left:16px; line-height:1.7;">
+                <li>Named credentials + external services where possible.</li>
+                <li>Queueable callouts and retry logic for transient errors.</li>
+                <li>Logging tables for failures so ops teams can requeue.</li>
+                <li>Minimal payloads and clear mapping docs for admins.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Resume & contact -->
+      <section class="screen" id="screen-resume">
+        <div class="grid">
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>👤 Overview</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">About</div>
+              <p class="about-text">
+                I’m a Salesforce Administrator / Developer with hands-on work across Sales, Service, Marketing Cloud
+                and Experience Cloud. I’ve built LWCs, Apex automations, and integrations that reduce clicks,
+                clean up data, and make it easier for sales and operations teams to do their jobs.
+              </p>
+              <div class="label" style="margin-top:8px;">Core stack</div>
+              <div class="stack-list">
+                <span class="stack-item">⚡ LWC <span style="font-size:10px;color:#9ca3af;">custom UIs</span></span>
+                <span class="stack-item">💻 Apex <span style="font-size:10px;color:#9ca3af;">triggers & batches</span></span>
+                <span class="stack-item">🧩 Flows <span style="font-size:10px;color:#9ca3af;">record & auto-launched</span></span>
+                <span class="stack-item">🌐 REST APIs <span style="font-size:10px;color:#9ca3af;">integrations</span></span>
+                <span class="stack-item">📊 SOQL/SOSL</span>
+                <span class="stack-item">🧱 Experience Cloud</span>
+              </div>
+                       </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div class="panel-title">
+                <span>📩 Contact & Next Steps</span>
+              </div>
+              <div class="dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="label">If you’re a hiring manager</div>
+              <p class="about-text">
+                The fastest path is simple: send me a JD and we can walk through this portfolio together.
+                I’m comfortable jumping between admin work, dev work, and explaining trade-offs in plain language.
+              </p>
+              <div class="label" style="margin-top:8px;">Links</div>
+              <div class="link-row">
+                <a class="link-chip" href="mailto:nvikas2506@gmail.com?subject=Salesforce%20Developer%20Opportunity">
+                  ✉️ Email: <strong>nvikas2506@gmail.com</strong>
+                </a>
+                <a class="link-chip" href="#" onclick="alert('Replace # with your LinkedIn URL in the HTML.');return false;">
+                  🔗 LinkedIn
+                </a>
+                <a class="link-chip" href="#" onclick="alert('Replace # with your GitHub URL in the HTML.');return false;">
+                  💻 GitHub
+                </a>
+              </div>
+              <div class="label" style="margin-top:8px;">Resume</div>
+              <p class="about-text">
+                I keep my resume focused on real projects and results: which tools I used, what problem I solved,
+                and what changed for the team. If you’d like a PDF copy, you can reply to that email and I’ll send
+                the latest version.
+              </p>
+            </div>
+          </div>
+        </div>
+<!-- ============================
+        EXPERIENCE
+============================= -->
+<div class="profile-card">
+  <h3 class="card-title">Experience</h3>
+
+  <div class="exp-block">
+    <h4>Salesforce Administrator & Developer — Foodja</h4>
+    <p class="sub">Aug 2024 – Present · Irvine, CA</p>
     <ul>
-      <li>Built automation using Flows, Process Builder, and Workflow Rules</li>
-      <li>Managed users, roles, profiles, MFA, SSO</li>
-      <li>Developed Apex Classes, Triggers, LWC, and Visualforce</li>
-      <li>Created reports, dashboards, approval processes, and community sites</li>
+      <li>Implemented Salesforce Messaging for Web with Einstein Bot transfer and agent handoff.</li>
+      <li>Built custom Notes LWC for Case teams to add/edit/delete notes inline.</li>
+      <li>Designed automation (Flows, rules) cutting onboarding & SLA cycle times by 25%.</li>
+      <li>Integrated NeverBounce, DocuSign, ZoomInfo, RingCentral, SharePoint, SFMC.</li>
+      <li>Maintained >98% CRM data accuracy across 100k+ records through audits.</li>
     </ul>
   </div>
 
-  <div class="section-title">📊 Projects</div>
-  <div class="card">
-    <h3>Interactive Resume Portfolio</h3>
-    <p>Developed with HTML, CSS, JS to showcase Salesforce expertise including animations and voice-enabled chatbot.</p>
-    <h3>Job Search Tracker App</h3>
-    <p>Custom Salesforce app to track job applications, recruiters, interview status, and resume analytics.</p>
-  </div>
-
-  <div class="section-title">🎓 Education</div>
-  <div class="card">
+  <div class="exp-block">
+    <h4>Salesforce Administrator & Developer — Freddie Mac</h4>
+    <p class="sub">May 2023 – Aug 2024 · McLean, VA</p>
     <ul>
-      <li>MS in Business Analytics – Sacred Heart University (GPA: 3.8/4.0)</li>
-      <li>Bachelor’s in Information Technology – Bhagwant University (GPA: 9.85/10)</li>
+      <li>Managed profiles, roles, and access for 200+ users, reducing access tickets by 40%.</li>
+      <li>Built Flows, layouts, and validation rules that reduced manual input by 30%.</li>
+      <li>Delivered UI & automation improvements reducing admin escalations by 30%.</li>
+      <li>Integrated Apollo.io for automated lead creation & prospecting activity sync.</li>
+      <li>Supported quoting workflows: pricing rules, approvals, routing logic.</li>
     </ul>
   </div>
-</section>
-
-<!-- Floating Buttons -->
-<a class="resume-btn" href="https://example.com/pravalika_resume.pdf" target="_blank" title="Download Resume">📄</a>
-<button class="chatbot-icon" onclick="toggleChat()" title="Chat">💬</button>
-<button class="tts-icon" onclick="speakAstro()" title="Replay Voice">🔊</button>
-<button class="mic-btn" onclick="startVoice()" title="Voice Q&A">🎙️</button>
-<button class="dark-toggle" onclick="toggleDark()">🌓</button>
-<button class="music-toggle" onclick="toggleMusic()">🎵</button>
-
-<div class="chat-window" id="chatWindow">
-  <p><strong>Astro Bot:</strong></p>
-  <div id="chatContent">Ask about my skills, projects, or education!</div>
 </div>
 
-<script>
-  function speakAstro(text = "Hi, I'm Astro. Welcome to Pravalika's portfolio. Click Explore More to begin.") {
-    const msg = new SpeechSynthesisUtterance(text);
-    speechSynthesis.speak(msg);
-  }
 
-  function startPortfolio() {
-    document.getElementById("landing").style.display = "none";
-    document.getElementById("loading").style.display = "flex";
-    speakAstro();
-    setTimeout(() => {
-      document.getElementById("loading").style.display = "none";
-      document.getElementById("portfolio").style.display = "block";
-      document.querySelectorAll('.card').forEach((el, i) => {
-        setTimeout(() => el.classList.add('revealed'), i * 300);
-      });
-    }, 3000);
-  }
+<!-- ============================
+        EDUCATION
+============================= -->
+<div class="profile-card">
+  <h3 class="card-title">Education</h3>
 
-  function toggleDark() {
-    document.body.classList.toggle("dark-mode");
-  }
+  <div class="edu-block">
+    <h4>Master of Science — Computer Science</h4>
+    <p class="sub">Sacred Heart University · Fairfield, CT</p>
+    <p class="sub">Jan 2022 – Mar 2023 · GPA 3.8 / 4.0</p>
+  </div>
+</div>
 
-  function toggleMusic() {
-    const music = document.getElementById("bgMusic");
-    music.paused ? music.play() : music.pause();
-  }
 
-  function toggleChat() {
-    const chat = document.getElementById("chatWindow");
-    chat.style.display = chat.style.display === "block" ? "none" : "block";
-  }
+<!-- ============================
+        CERTIFICATIONS
+============================= -->
+<div class="profile-card">
+  <h3 class="card-title">Certifications</h3>
 
-  function startVoice() {
-    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+  <ul class="cert-list">
+    <li>Salesforce Certified Administrator</li>
+    <li>Salesforce Platform Developer I</li>
+  </ul>
+</div>
 
-    recognition.onresult = function(event) {
-      const transcript = event.results[0][0].transcript.toLowerCase();
-      let response = "Sorry, I didn't understand that.";
+      </section>
+    </main>
+  </div>
 
-      if (transcript.includes("skill")) {
-        response = "I am skilled in Apex, Lightning Web Components, Flows, Validation Rules, and Salesforce integration.";
-      } else if (transcript.includes("project")) {
-        response = "One of my key projects is an Interactive Resume Portfolio built using HTML, CSS, and JavaScript.";
-      } else if (transcript.includes("education")) {
-        response = "I hold a Master's in Business Analytics from Sacred Heart University and a Bachelor's from Bhagwant University.";
+  <footer>
+    Built as a single static page. No backend, just HTML/CSS/JS — like a lightweight Salesforce org dedicated to this portfolio.
+  </footer>
+
+  <!-- Lead modal -->
+  <div class="modal-backdrop" id="leadModalBackdrop">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="leadModalTitle">Lead Details</h3>
+        <button class="modal-close" id="leadModalClose">✕</button>
+      </div>
+      <div class="modal-body" id="leadModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Command palette -->
+  <div class="cmd-overlay" id="cmdOverlay">
+    <div class="cmd-panel">
+      <div class="cmd-input-row">
+        <span style="opacity:0.7;">⌘</span>
+        <input id="cmdInput" placeholder="Search apps: developer, leads, chat, flow, experience, integrations, resume..." />
+        <span class="cmd-shortcut">Esc to close</span>
+      </div>
+      <div class="cmd-list" id="cmdList"></div>
+    </div>
+  </div>
+
+  <script>
+    // ---------- Global screen handling ----------
+    const screens = {
+      launcher: {
+        title: 'App Launcher',
+        subtitle: 'Jump into simulations that mirror the real Salesforce work I do: LWCs, Apex, chat, flows, and Experience Cloud.',
+        tag: '🔥 Dark Lightning Experience'
+      },
+      developer: {
+        title: 'Developer Console',
+        subtitle: 'Apex logs, test runs, and deployment simulations showing how I work behind the scenes.',
+        tag: 'Backend & Orchestration'
+      },
+      leads: {
+        title: 'Lead Intelligence Dashboard',
+        subtitle: 'Sales-first view of lead engagement: opens, clicks, and recency so reps know who to call.',
+        tag: 'LWC • Engagement'
+      },
+      chat: {
+        title: 'Embedded Messaging Header',
+        subtitle: 'Bot → transfer → agent simulation that mirrors how I customize Salesforce chat.',
+        tag: 'Support & UX'
+      },
+      flow: {
+        title: 'Flow Builder Mini',
+        subtitle: 'A visual mini-flow showing how I split responsibilities between Flow and Apex.',
+        tag: 'Admin Automation'
+      },
+      experience: {
+        title: 'Experience Cloud Portal',
+        subtitle: 'Public LWC form simulation where drivers request equipment upgrades.',
+        tag: 'Customer-facing Experience'
+      },
+      integrations: {
+        title: 'Integrations Monitor',
+        subtitle: 'Status-like view of the external tools I connect to Salesforce.',
+        tag: 'APIs & Web Services'
+      },
+      resume: {
+        title: 'Profile, Resume & Contact',
+        subtitle: 'Short overview of what I do, my stack, and how to reach me.',
+        tag: 'Hiring Manager View'
       }
-
-      document.getElementById("chatContent").innerText = response;
-      speakAstro(response);
     };
 
-    recognition.onerror = function() {
-      document.getElementById("chatContent").innerText = "Voice recognition failed. Please try again.";
+    const screenElems = document.querySelectorAll('.screen');
+    const railBtns = document.querySelectorAll('.rail-btn');
+    const launcherTiles = document.querySelectorAll('.launcher-app');
+    const crumb = document.getElementById('crumb');
+    const screenTitle = document.getElementById('screenTitle');
+    const screenSubtitle = document.getElementById('screenSubtitle');
+    const screenTag = document.getElementById('screenTag');
+    const topStatus = document.getElementById('topStatus');
+    const avatarBtn = document.getElementById('avatarBtn');
+
+    function setActiveScreen(key) {
+      screenElems.forEach(s => s.classList.remove('active'));
+      const target = document.getElementById('screen-' + key);
+      if (target) target.classList.add('active');
+
+      railBtns.forEach(btn => {
+        const scr = btn.getAttribute('data-screen');
+        btn.classList.toggle('active', scr === key);
+      });
+
+      const cfg = screens[key] || screens.launcher;
+      crumb.textContent = cfg.title;
+      screenTitle.textContent = cfg.title;
+      screenSubtitle.textContent = cfg.subtitle;
+      screenTag.textContent = cfg.tag;
+    }
+
+    railBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scr = btn.getAttribute('data-screen');
+        setActiveScreen(scr);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    launcherTiles.forEach(tile => {
+      tile.addEventListener('click', () => {
+        const scr = tile.getAttribute('data-open-screen');
+        if (scr) setActiveScreen(scr);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Simulate org readiness
+    setTimeout(() => { topStatus.textContent = 'Running'; }, 1400);
+
+    document.getElementById('btnRecruiter').addEventListener('click', () => {
+      setActiveScreen('resume');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    if (avatarBtn) {
+      avatarBtn.addEventListener('click', () => {
+        // Quick jump to Developer screen from avatar
+        setActiveScreen('developer');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // ---------- Terminal / Developer console ----------
+    const terminalBody = document.getElementById('terminalBody');
+    const terminalInput = document.getElementById('terminalInput');
+
+    function appendTerminalLine(text, cssClass) {
+      const div = document.createElement('div');
+      div.className = 'terminal-line';
+      if (cssClass) div.classList.add(cssClass);
+      div.textContent = text;
+      const inputRow = terminalBody.querySelector('.terminal-input-row');
+      terminalBody.insertBefore(div, inputRow);
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+
+    function handleTerminalCommand(raw) {
+      const cmd = raw.trim();
+      if (!cmd) return;
+      appendTerminalLine('vikas-dev % ' + cmd);
+
+      switch (cmd.toLowerCase()) {
+        case 'help':
+          appendTerminalLine('Available commands:', 'log-info');
+          appendTerminalLine('  run lead_validation      - validate new leads', 'log-info');
+          appendTerminalLine('  run batch_cleanup        - cleanup stale leads', 'log-info');
+          appendTerminalLine('  run integrations_test    - smoke test external APIs', 'log-info');
+          appendTerminalLine('  sfdc:deploy              - simulate a deployment', 'log-info');
+          appendTerminalLine('  clear                    - clear log output', 'log-info');
+          break;
+        case 'run lead_validation':
+          appendTerminalLine('[17:04:12.233] Trigger.Start Lead beforeInsert', 'log-info');
+          appendTerminalLine('[17:04:12.240] LeadTriggerHandler: evaluating 42 records', 'log-info');
+          appendTerminalLine('[17:04:12.242] Queueable scheduled: EmailVerificationQueueable', 'log-success');
+          appendTerminalLine('[17:04:12.255] Trigger.End (CPU: 38ms)', 'log-success');
+          break;
+        case 'run batch_cleanup':
+          appendTerminalLine('[02:10:01.011] Batch start: LeadCleanupBatch', 'log-info');
+          appendTerminalLine('[02:10:01.512] 2,400 stale leads marked as closed', 'log-success');
+          appendTerminalLine('[02:10:02.002] Job finished. Next run: 02:00 tomorrow.', 'log-success');
+          break;
+        case 'run integrations_test':
+          appendTerminalLine('[09:32:22.002] Ping NeverBounce ... OK (142ms)', 'log-success');
+          appendTerminalLine('[09:32:22.221] Ping DocuSign ... OK (203ms)', 'log-success');
+          appendTerminalLine('[09:32:22.487] Ping RingCentral ... warn: high latency', 'log-warn');
+          appendTerminalLine('[09:32:22.902] Ping Marketing Cloud ... OK (310ms)', 'log-success');
+          break;
+        case 'sfdc:deploy':
+          appendTerminalLine('Running local tests...', 'log-info');
+          setTimeout(() => {
+            appendTerminalLine('All tests passed. Coverage: 93%', 'log-success');
+            appendTerminalLine('Deploying metadata to Dev Org...', 'log-info');
+            setTimeout(() => {
+              appendTerminalLine('Deployment complete. 0 errors, 0 warnings.', 'log-success');
+            }, 600);
+          }, 600);
+          break;
+        case 'clear':
+          Array.from(terminalBody.querySelectorAll('.terminal-line')).forEach(line => line.remove());
+          break;
+        default:
+          appendTerminalLine("Command not found. Type 'help' for options.", 'log-error');
+      }
+    }
+
+    if (terminalInput) {
+      terminalInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          handleTerminalCommand(terminalInput.value);
+          terminalInput.value = '';
+        }
+      });
+    }
+
+    // ---------- Lead dashboard simulation ----------
+    const leads = [
+      { name: 'Acme Foods - Maria Lopez', opens: 5, clicks: 2, firstOpen: '2025-10-01', lastOpen: '2025-11-15', score: 'high' },
+      { name: 'City Health Clinic - Dan Wu', opens: 3, clicks: 0, firstOpen: '2025-10-12', lastOpen: '2025-11-12', score: 'high' },
+      { name: 'Sunrise Offices - Priya Patel', opens: 2, clicks: 0, firstOpen: '2025-11-01', lastOpen: '2025-11-05', score: 'warm' },
+      { name: 'Northwest Finance - James Lee', opens: 1, clicks: 0, firstOpen: '2025-10-20', lastOpen: '2025-10-20', score: 'warm' },
+      { name: 'FreshBite Cafe - Emma Johnson', opens: 0, clicks: 0, firstOpen: '-', lastOpen: '-', score: 'cold' },
+      { name: 'Metro CoWorking - Alex Kim', opens: 4, clicks: 1, firstOpen: '2025-10-22', lastOpen: '2025-11-14', score: 'high' }
+    ];
+
+    const metricTotal = document.getElementById('metricTotal');
+    const metricHot = document.getElementById('metricHot');
+    const metricWarm = document.getElementById('metricWarm');
+    const metricCold = document.getElementById('metricCold');
+    const leadTableBody = document.getElementById('leadTableBody');
+    const metricCards = document.querySelectorAll('.metric-card');
+    const btnSortOpens = document.getElementById('btnSortOpens');
+    let currentFilter = 'all';
+    let sortDescending = true;
+
+    function computeMetrics() {
+      metricTotal.textContent = leads.length;
+      metricHot.textContent = leads.filter(l => l.score === 'high').length;
+      metricWarm.textContent = leads.filter(l => l.score === 'warm').length;
+      metricCold.textContent = leads.filter(l => l.score === 'cold').length;
+    }
+
+    function engagementClass(score) {
+      if (score === 'high') return 'eng-high';
+      if (score === 'warm') return 'eng-med';
+      return 'eng-low';
+    }
+
+    function formatDate(d) {
+      if (!d || d === '-') return '-';
+      const date = new Date(d + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+
+    function renderLeads() {
+      if (!leadTableBody) return;
+      leadTableBody.innerHTML = '';
+      let filtered = leads.slice();
+      if (currentFilter === 'hot') filtered = filtered.filter(l => l.score === 'high');
+      if (currentFilter === 'warm') filtered = filtered.filter(l => l.score === 'warm');
+      if (currentFilter === 'cold') filtered = filtered.filter(l => l.score === 'cold');
+
+      filtered.sort((a, b) => sortDescending ? b.opens - a.opens : a.opens - b.opens);
+
+      filtered.forEach(lead => {
+        const row = document.createElement('div');
+        row.className = 'lead-row';
+        row.innerHTML = `
+          <div class="lead-col name"><span class="lead-name-link">${lead.name}</span></div>
+          <div class="lead-col small">${lead.opens}</div>
+          <div class="lead-col small">${lead.clicks}</div>
+          <div class="lead-col small">${formatDate(lead.firstOpen)}</div>
+          <div class="lead-col small">${formatDate(lead.lastOpen)}</div>
+          <div class="lead-col small"><span class="eng-dot ${engagementClass(lead.score)}"></span>${lead.score}</div>
+        `;
+        row.querySelector('.lead-name-link').addEventListener('click', e => {
+          e.stopPropagation();
+          openLeadModal(lead);
+        });
+        leadTableBody.appendChild(row);
+      });
+    }
+
+    computeMetrics();
+    renderLeads();
+
+    metricCards.forEach(card => {
+      card.addEventListener('click', () => {
+        metricCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        currentFilter = card.getAttribute('data-filter') || 'all';
+        renderLeads();
+      });
+    });
+
+    if (btnSortOpens) {
+      btnSortOpens.addEventListener('click', () => {
+        sortDescending = !sortDescending;
+        renderLeads();
+        btnSortOpens.textContent = sortDescending ? '⬆ Sort by Opens' : '⬇ Sort by Opens';
+      });
+    }
+
+    // Lead modal
+    const leadModalBackdrop = document.getElementById('leadModalBackdrop');
+    const leadModalTitle = document.getElementById('leadModalTitle');
+    const leadModalBody = document.getElementById('leadModalBody');
+    const leadModalClose = document.getElementById('leadModalClose');
+
+    function openLeadModal(lead) {
+      leadModalTitle.textContent = lead.name;
+      leadModalBody.innerHTML = `
+        <p>This is a simulated view of what I surface for reps when they click a lead from the engagement dashboard.</p>
+        <div style="margin-top:8px;">
+          <span class="badge"><span class="eng-dot ${engagementClass(lead.score)}"></span> Engagement: ${lead.score}</span>
+        </div>
+        <div style="margin-top:8px;">
+          <div class="modal-field-row">
+            <span>First Open:</span>
+            <span>${formatDate(lead.firstOpen)}</span>
+          </div>
+          <div class="modal-field-row">
+            <span>Last Open:</span>
+            <span>${formatDate(lead.lastOpen)}</span>
+          </div>
+          <div class="modal-field-row">
+            <span>Total Opens:</span>
+            <span>${lead.opens}</span>
+          </div>
+          <div class="modal-field-row">
+            <span>Clicks:</span>
+            <span>${lead.clicks}</span>
+          </div>
+        </div>
+      `;
+      leadModalBackdrop.classList.add('active');
+    }
+
+    if (leadModalClose) {
+      leadModalClose.addEventListener('click', () => leadModalBackdrop.classList.remove('active'));
+      leadModalBackdrop.addEventListener('click', e => {
+        if (e.target === leadModalBackdrop) leadModalBackdrop.classList.remove('active');
+      });
+    }
+
+    // ---------- Chat simulation ----------
+    const chatHeader = document.getElementById('chatHeader');
+    const chatAvatar = document.getElementById('chatAvatar');
+    const chatTitle = document.getElementById('chatTitle');
+    const chatSubtitle = document.getElementById('chatSubtitle');
+    const chatTransferBar = document.getElementById('chatTransferBar');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInputRow = document.getElementById('chatInputRow');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    const btnStartChat = document.getElementById('btnStartChat');
+    const chatMinBtn = document.getElementById('chatMinBtn');
+    const chatCloseBtn = document.getElementById('chatCloseBtn');
+    const chatBody = document.getElementById('chatBody');
+    let chatMinimized = false;
+    let chatEnded = false;
+
+    function addChatMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = 'chat-message ' + type;
+      div.textContent = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function resetChat() {
+      chatMessages.innerHTML = '';
+      chatTransferBar.classList.remove('active');
+      chatAvatar.textContent = 'B';
+      chatTitle.textContent = 'Foodja Bot';
+      chatSubtitle.textContent = 'Answering quick questions';
+      chatInputRow.style.display = 'flex';
+      chatMinimized = false;
+      chatEnded = false;
+      chatBody.style.height = '220px';
+    }
+
+    if (btnStartChat) {
+      btnStartChat.addEventListener('click', () => {
+        resetChat();
+        addChatMessage('Hi! I’m the Foodja bot. I can help you check order status or connect you to a human.', 'bot');
+
+        // After a short delay, decide to transfer
+        setTimeout(() => {
+          addChatMessage('Let me connect you to our support team...', 'bot');
+          chatTransferBar.classList.add('active');
+          chatAvatar.textContent = '⋯';
+          chatTitle.textContent = 'Transferring...';
+          chatSubtitle.textContent = 'Finding an available agent';
+
+          // After transfer animation, agent joins
+          setTimeout(() => {
+            chatTransferBar.classList.remove('active');
+            chatAvatar.textContent = 'A';
+            chatTitle.textContent = 'Alex • Support';
+            chatSubtitle.textContent = 'Joined the conversation';
+            addChatMessage('Hi, this is Alex from the Foodja support team. How can I help today?', 'agent');
+          }, 1400);
+        }, 900);
+      });
+    }
+
+    if (chatSendBtn && chatInput) {
+      chatSendBtn.addEventListener('click', () => {
+        const text = chatInput.value.trim();
+        if (!text || chatEnded) return;
+        addChatMessage(text, 'user');
+        chatInput.value = '';
+
+        // Simple echo-style agent reply
+        setTimeout(() => {
+          if (chatEnded) return;
+          addChatMessage('Got it. In a real org, I’d look this up in Salesforce and respond with order or account details.', 'agent');
+        }, 800);
+      });
+
+      chatInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          chatSendBtn.click();
+        }
+      });
+    }
+
+    if (chatMinBtn) {
+      chatMinBtn.addEventListener('click', () => {
+        chatMinimized = !chatMinimized;
+        if (chatMinimized) {
+          chatMessages.style.display = 'none';
+          chatInputRow.style.display = 'none';
+          chatBody.style.height = '42px';
+        } else {
+          chatMessages.style.display = 'block';
+          if (!chatEnded) chatInputRow.style.display = 'flex';
+          chatBody.style.height = '220px';
+        }
+      });
+    }
+
+    if (chatCloseBtn) {
+      chatCloseBtn.addEventListener('click', () => {
+        if (chatEnded) {
+          resetChat();
+          return;
+        }
+        addChatMessage('Chat ended. You can restart the scenario using the button above.', 'agent');
+        chatSubtitle.textContent = 'Conversation ended';
+        chatInputRow.style.display = 'none';
+        chatEnded = true;
+      });
+    }
+
+    // ---------- Flow mini ----------
+    const btnHighlightFlow = document.getElementById('btnHighlightFlow');
+    const flowNodes = document.querySelectorAll('.flow-node');
+    const flowConnectors = document.querySelectorAll('.flow-connector');
+
+    function clearFlowHighlights() {
+      flowNodes.forEach(n => n.classList.remove('active'));
+      flowConnectors.forEach(c => c.classList.remove('active'));
+    }
+
+    if (btnHighlightFlow) {
+      btnHighlightFlow.addEventListener('click', () => {
+        clearFlowHighlights();
+        const pathNodes = ['start', 'decision', 'assign', 'action', 'end'];
+        pathNodes.forEach((key, idx) => {
+          const node = document.querySelector(`.flow-node[data-node="${key}"]`);
+          if (node) {
+            setTimeout(() => { node.classList.add('active'); }, idx * 140);
+          }
+        });
+        ['1','2','3','4'].forEach((key, idx) => {
+          const conn = document.querySelector(`.flow-connector[data-connector="${key}"]`);
+          if (conn) {
+            setTimeout(() => { conn.classList.add('active'); }, (idx + 1) * 160);
+          }
+        });
+      });
+    }
+
+    // ---------- Experience Cloud simulation ----------
+    const btnLookupDriver = document.getElementById('btnLookupDriver');
+    const expEmail = document.getElementById('expEmail');
+    const expDriverBlock = document.getElementById('expDriverBlock');
+    const expName = document.getElementById('expName');
+    const expRegion = document.getElementById('expRegion');
+    const expOrders = document.getElementById('expOrders');
+    const expTier = document.getElementById('expTier');
+    const expBag = document.getElementById('expBag');
+    const expAddressRow = document.getElementById('expAddressRow');
+    const expAddress = document.getElementById('expAddress');
+    const btnSubmitExp = document.getElementById('btnSubmitExp');
+    const expMessage = document.getElementById('expMessage');
+
+    // Simple mocked "org" data
+    const driverData = {
+      'driver50@example.com':  { name: 'Jamie Rivers',  region: 'DL',  orders: 52 },
+      'driver100@example.com': { name: 'Taylor Chen',   region: 'BA',  orders: 104 },
+      'driver200@example.com': { name: 'Alex Morgan',   region: 'LAE', orders: 210 },
+      'driver250@example.com': { name: 'Jordan Singh',  region: 'PX',  orders: 255 }
     };
 
-    recognition.start();
-  }
+    const mailOnlyRegions = ['BA', 'CV', 'IE', 'LAE', 'LAN', 'LAS', 'LAW', 'TU'];
 
-  window.addEventListener('load', speakAstro);
-</script>
+    function computeTier(orders) {
+      if (orders >= 250) return '250+ order tier';
+      if (orders >= 200) return '200 order tier';
+      if (orders >= 150) return '150 order tier';
+      if (orders >= 100) return '100 order tier';
+      if (orders >= 50) return '50 order tier';
+      return 'Below threshold';
+    }
 
+    if (btnLookupDriver && expEmail) {
+      btnLookupDriver.addEventListener('click', () => {
+        const email = expEmail.value.trim().toLowerCase();
+        const driver = driverData[email];
+        if (!driver) {
+          expDriverBlock.style.display = 'none';
+          expMessage.textContent = 'No driver found for that email. Try one of the sample addresses like driver50@example.com.';
+          return;
+        }
+
+        expDriverBlock.style.display = 'block';
+        expName.value = driver.name;
+        expRegion.value = driver.region;
+        expOrders.value = driver.orders;
+        expTier.value = computeTier(driver.orders);
+        expBag.value = '';
+        expAddress.value = '';
+        expMessage.textContent = '';
+
+        // Show address for mail-only regions
+        if (mailOnlyRegions.includes(driver.region)) {
+          expAddressRow.style.display = 'block';
+        } else {
+          expAddressRow.style.display = 'none';
+        }
+
+        // Default cart radio
+        const cartRadios = document.querySelectorAll('input[name="cart"]');
+        cartRadios.forEach(r => r.checked = false);
+      });
+    }
+
+    if (btnSubmitExp) {
+      btnSubmitExp.addEventListener('click', () => {
+        if (expDriverBlock.style.display === 'none') {
+          expMessage.textContent = 'Lookup a driver first using the email field.';
+          return;
+        }
+
+        const driverRegion = expRegion.value;
+        const bag = expBag.value;
+        const cartRadios = document.querySelectorAll('input[name="cart"]:checked');
+        const cartChoice = cartRadios.length ? cartRadios[0].value : null;
+
+        if (!bag) {
+          expMessage.textContent = 'Select a bag option to continue.';
+          return;
+        }
+
+        if (mailOnlyRegions.includes(driverRegion)) {
+          if (!expAddress.value.trim()) {
+            expMessage.textContent = 'For mail-only regions, please provide a mailing address.';
+            return;
+          }
+          expMessage.textContent = 'Thank you. In the real org, this would create a Case and ship your upgrade to the address provided.';
+        } else {
+          if (cartChoice === 'yes') {
+            expMessage.textContent = 'Thank you. In production, we’d create a Case routed to the logistics queue with bag and cart for pickup.';
+          } else {
+            expMessage.textContent = 'Thank you. In production, we’d create a Case so you can pick up your new bag at the regional office.';
+          }
+        }
+      });
+    }
+
+    // ---------- Integrations Monitor ----------
+    const btnPingIntegrations = document.getElementById('btnPingIntegrations');
+    const integrationsGrid = document.getElementById('integrationsGrid');
+
+    const integrations = [
+      { name: 'NeverBounce', key: 'neverbounce' },
+      { name: 'DocuSign', key: 'docusign' },
+      { name: 'ZoomInfo', key: 'zoominfo' },
+      { name: 'RingCentral', key: 'ringcentral' },
+      { name: 'Marketing Cloud', key: 'mc' },
+      { name: 'Box (File imports)', key: 'box' }
+    ];
+
+    function randomStatus(key) {
+      // Bias toward OK / warn
+      const rand = Math.random();
+      if (rand < 0.7) return 'ok';
+      if (rand < 0.9) return 'warn';
+      return 'down';
+    }
+
+    function statusLabel(status) {
+      if (status === 'ok') return 'Healthy';
+      if (status === 'warn') return 'Degraded';
+      return 'Down';
+    }
+
+    function statusDetail(integration, status) {
+      if (integration.key === 'neverbounce') {
+        if (status === 'ok') return 'API key valid, last ping < 5 min.';
+        if (status === 'warn') return 'Slower response time, retry logic active.';
+        return 'Key or endpoint issue. Would log to error table.';
+      }
+      if (integration.key === 'docusign') {
+        if (status === 'ok') return 'Connect app authenticated, envelopes flowing.';
+        if (status === 'warn') return 'Rate limit near threshold, monitoring.';
+        return 'Webhook failures detected.';
+      }
+      if (integration.key === 'zoominfo') {
+        if (status === 'ok') return 'Credits available, enrichment running.';
+        if (status === 'warn') return 'Credits low, admin review needed.';
+        return 'Authentication error, would alert ops.';
+      }
+      if (integration.key === 'ringcentral') {
+        if (status === 'ok') return 'Click-to-call working for users.';
+        if (status === 'warn') return 'High latency, call logs slightly delayed.';
+        return 'Call log sync failing.';
+      }
+      if (integration.key === 'mc') {
+        if (status === 'ok') return 'Triggered sends and journeys online.';
+        if (status === 'warn') return 'Journeys publishing slowly.';
+        return 'API auth issues, queued for investigation.';
+      }
+      if (integration.key === 'box') {
+        if (status === 'ok') return 'VM script + Box app running on schedule.';
+        if (status === 'warn') return 'Last sync slightly delayed, but recent.';
+        return 'No recent job. Would escalate to IT.';
+      }
+      return '';
+    }
+
+    function renderIntegrations() {
+      if (!integrationsGrid) return;
+      integrationsGrid.innerHTML = '';
+      integrations.forEach(integration => {
+        const status = randomStatus(integration.key);
+        const card = document.createElement('div');
+        card.className = 'int-card';
+
+        let statusClass = 'status-ok';
+        if (status === 'warn') statusClass = 'status-warn';
+        if (status === 'down') statusClass = 'status-down';
+
+        card.innerHTML = `
+          <div class="int-top">
+            <span>${integration.name}</span>
+            <span class="status-pill ${statusClass}">
+              <span class="status-dot"></span>
+              ${statusLabel(status)}
+            </span>
+          </div>
+          <div class="hint">${statusDetail(integration, status)}</div>
+        `;
+        integrationsGrid.appendChild(card);
+      });
+    }
+
+    if (btnPingIntegrations) {
+      btnPingIntegrations.addEventListener('click', renderIntegrations);
+      // Initial render
+      renderIntegrations();
+    }
+
+    // ---------- Command palette ----------
+    const cmdOverlay = document.getElementById('cmdOverlay');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdList = document.getElementById('cmdList');
+
+    const cmdItemsConfig = [
+      { key: 'launcher', label: 'App Launcher', shortcut: 'G A' },
+      { key: 'developer', label: 'Developer Console', shortcut: 'G D' },
+      { key: 'leads', label: 'Lead Intelligence Dashboard', shortcut: 'G L' },
+      { key: 'chat', label: 'Embedded Messaging', shortcut: 'G C' },
+      { key: 'flow', label: 'Flow Builder Mini', shortcut: 'G F' },
+      { key: 'experience', label: 'Experience Cloud Portal', shortcut: 'G E' },
+      { key: 'integrations', label: 'Integrations Monitor', shortcut: 'G I' },
+      { key: 'resume', label: 'Profile, Resume & Contact', shortcut: 'G R' }
+    ];
+
+    function openCmdPalette() {
+      cmdOverlay.classList.add('active');
+      cmdInput.value = '';
+      renderCmdList('');
+      setTimeout(() => cmdInput.focus(), 10);
+    }
+
+    function closeCmdPalette() {
+      cmdOverlay.classList.remove('active');
+    }
+
+    function renderCmdList(filter) {
+      const term = (filter || '').toLowerCase();
+      cmdList.innerHTML = '';
+      cmdItemsConfig
+        .filter(item => item.label.toLowerCase().includes(term) || item.key.includes(term))
+        .forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'cmd-item';
+          div.dataset.key = item.key;
+          div.innerHTML = `
+            <span>${item.label}</span>
+            <span class="cmd-shortcut">${item.shortcut}</span>
+          `;
+          div.addEventListener('click', () => {
+            setActiveScreen(item.key);
+            closeCmdPalette();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+          cmdList.appendChild(div);
+        });
+    }
+
+       if (cmdInput) {
+      cmdInput.addEventListener('input', e => {
+        renderCmdList(e.target.value);
+      });
+
+      cmdInput.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+          closeCmdPalette();
+        }
+      });
+    }
+
+    // open with Ctrl+K
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openCmdPalette();
+      }
+    });
+
+    // close palette when clicking outside
+    if (cmdOverlay) {
+      cmdOverlay.addEventListener('click', e => {
+        if (e.target === cmdOverlay) {
+          closeCmdPalette();
+        }
+      });
+    }
+
+    // Basic keyboard up/down navigation inside palette
+    let cmdIndex = -1;
+
+    function highlightCmd(index) {
+      const items = cmdList.querySelectorAll('.cmd-item');
+      items.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+      });
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!cmdOverlay.classList.contains('active')) return;
+      const items = cmdList.querySelectorAll('.cmd-item');
+      if (!items.length) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        cmdIndex = (cmdIndex + 1) % items.length;
+        highlightCmd(cmdIndex);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        cmdIndex = (cmdIndex - 1 + items.length) % items.length;
+        highlightCmd(cmdIndex);
+      } else if (e.key === 'Enter') {
+        if (cmdIndex >= 0 && items[cmdIndex]) {
+          const key = items[cmdIndex].dataset.key;
+          setActiveScreen(key);
+          closeCmdPalette();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    });
+
+  </script>
 </body>
 </html>
