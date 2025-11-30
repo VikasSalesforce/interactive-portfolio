@@ -1562,8 +1562,23 @@
 }
 </style>
 
+
+<style>
+#mobileMenu{display:none;position:fixed;top:16px;left:16px;z-index:2000;width:46px;height:46px;background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.15);border-radius:10px;align-items:center;justify-content:center;backdrop-filter:blur(6px);cursor:pointer}
+#mobileMenu i{color:#fff;font-size:20px}
+#sidebarOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1500}
+@media(max-width:860px){
+ #mobileMenu{display:flex}
+ #navColumn{position:fixed !important;top:0;left:-250px;width:250px !important;height:100vh;z-index:1600;transition:left .28s ease;}
+ #navColumn.mobile-visible{left:0}
+ #consoleContainer{margin-left:0 !important;width:100% !important;}
+}
+</style>
+
 </head>
 <body>
+<div id='mobileMenu'><i class='fa fa-bars'></i></div>
+<div id='sidebarOverlay'></div>
 <div id="mobileMenu"><i class="fa fa-bars"></i></div>
 <div id="sidebarOverlay"></div>
   <header class="top-nav">
@@ -3125,6 +3140,24 @@ document.getElementById('mobileMenu')?.addEventListener('click',()=>{
 document.getElementById('sidebarOverlay')?.addEventListener('click',()=>{
  document.getElementById('navColumn')?.classList.remove('mobile-visible');
  document.getElementById('sidebarOverlay').style.display='none';
+});
+</script>
+
+
+<script>
+const menu=document.getElementById('mobileMenu');
+const nav=document.getElementById('navColumn');
+const ov=document.getElementById('sidebarOverlay');
+menu?.addEventListener('click',()=>{
+ if(nav.classList.contains('mobile-visible')){
+    nav.classList.remove('mobile-visible'); ov.style.display='none';
+ } else {
+    nav.classList.add('mobile-visible'); ov.style.display='block';
+ }
+});
+ov?.addEventListener('click',()=>{
+ nav.classList.remove('mobile-visible');
+ ov.style.display='none';
 });
 </script>
 
